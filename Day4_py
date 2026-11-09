@@ -1,0 +1,13 @@
+寻找用户
+SELECT name
+FROM Customer
+WHERE referee_id !=2 OR referee_id IS NULL
+寻找产品
+SELECT product_id
+FROM Products
+WHERE low_fats="Y" and recyclable="Y"
+转换大小写
+class Solution:
+    def toLowerCase(self, s: str) -> str:
+        res=s.lower()
+        return res
