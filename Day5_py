@@ -1,0 +1,21 @@
+巨难取余1给定一个非负整数 num，反复将各个位上的数字相加，直到结果为一位数。返回这个结果。
+class Solution:
+    def addDigits(self, num: int) -> int:
+        while num>=10:
+            res=0
+            while num>0:
+                res+=num%10
+                num=num//10
+            num=res
+        return num
+巨难取余2给你一个整数 n，请你帮忙计算并返回该整数「各位数字之积」与「各位数字之和」的差。
+class Solution:
+    def subtractProductAndSum(self, n: int) -> int:
+            res1=1
+            res2=0
+            while n>0:
+                x=n%10
+                res1*=x
+                res2+=x
+                n=n//10
+            return res1-res2
