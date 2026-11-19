@@ -1,0 +1,48 @@
+给定两个字符串 s 和 t ，编写一个函数来判断 t 是否是 s 的 字母异位词。
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        if len(s)!=len(t):
+            return False
+        hashmap={}
+        for i in s:
+            if i in hashmap:
+                hashmap[i]+=1
+            else:
+                hashmap[i]=1
+        for j in t:
+            if j in hashmap:
+                hashmap[j]-=1
+            else:
+                hashmap[j]=-1
+        for x in hashmap.values():
+            if x<0:
+                return False
+        return True
+
+        给你一个字符串数组，请你将 字母异位词 组合在一起。可以按任意顺序返回结果列表。
+
+ class Solution:
+    def groupAnagrams(self, strs: list[str]) -> list[list[str]]:
+        hashmap={}
+        for i in strs:
+            key=''.join(sorted(i))
+            if key not in hashmap:
+                hashmap[key]=[]
+            hashmap[key].append(i)
+        return list(hashmap.values())
+给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出 和为目标值 target  的那 两个 整数，并返回它们的数组下标。
+
+你可以假设每种输入只会对应一个答案，并且你不能使用两次相同的元素。
+
+你可以按任意顺序返回答案。
+class Solution:
+    def twoSum(self, nums: list[int], target: int) -> list[int]:
+        map={}
+        for idx,i in enumerate(nums):
+            res=target-i
+            if res in map:
+                return [map[res],idx]
+            map[i]=idx
+
+
+            
