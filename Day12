@@ -1,0 +1,49 @@
+给定两个字符串 s 和 t ，判断它们是否是同构的。
+
+如果 s 中的字符可以按某种映射关系替换得到 t ，那么这两个字符串是同构的。
+
+每个出现的字符都应当映射到另一个字符，同时不改变字符的顺序。不同字符不能映射到同一个字符上，相同字符只能映射到同一个字符上，字符可以映射到自己本身。
+
+ class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        map_s={}
+        map_t={}
+        for cs,ct in zip(s,t):
+            if cs in map_s:
+                if map_s[cs]!=ct:
+                    return False
+            else:
+                if ct in map_t:
+                    return False
+                map_s[cs]=ct
+                map_t[ct]=cs
+        return True
+
+
+        给定一种规律 pattern 和一个字符串 s ，判断 s 是否遵循相同的规律。
+
+这里的 遵循 指完全匹配，例如， pattern 里的每个字母和字符串 s 中的每个非空单词之间存在着双向连接的对应规律。具体来说：
+
+pattern 中的每个字母都 恰好 映射到 s 中的一个唯一单词。
+s 中的每个唯一单词都 恰好 映射到 pattern 中的一个字母。
+没有两个字母映射到同一个单词，也没有两个单词映射到同一个字母。
+ class Solution:
+    def wordPattern(self, pattern: str, s: str) -> bool:
+        map_s={}
+        map_p={}
+        words=s.split()
+        if len(words)!=len(pattern):
+            return False
+        for cs,cp in zip(words,pattern):
+            if cs in map_s:
+                if map_s[cs]!=cp:
+                    return False
+            else:
+                if cp in map_p:
+                    return False
+            map_s[cs]=cp
+            map_p[cp]=cs
+        return True
+            
+
+        
