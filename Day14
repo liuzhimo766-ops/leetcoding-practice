@@ -1,0 +1,53 @@
+编写一个算法来判断一个数 n 是不是快乐数。
+
+「快乐数」 定义为：
+
+对于一个正整数，每一次将该数替换为它每个位置上的数字的平方和。
+然后重复这个过程直到这个数变为 1，也可能是 无限循环 但始终变不到 1。
+如果这个过程 结果为 1，那么这个数就是快乐数。
+如果 n 是 快乐数 就返回 true ；不是，则返回 false 。
+class Solution:
+    def isHappy(self, n: int) -> bool:
+        map={}
+        while n not in map:
+            map[n]=True
+            n=self.get_sum(n)
+            if n==1:
+                return True
+        return False
+    def get_sum(self,x):
+        total=0
+        while x>0:
+            digit=x%10
+            total+=digit*digit
+            x=x//10
+        return total
+给你一个整数数组 nums 和一个整数 k ，判断数组中是否存在两个 不同的索引 i 和 j ，满足 nums[i] == nums[j] 且 abs(i - j) <= k 。如果存在，返回 true ；否则，返回 false 。
+
+ class Solution:
+    def containsNearbyDuplicate(self, nums: list[int], k: int) -> bool:
+        map={}
+        for idx,n in enumerate(nums):
+            if n in map:
+                if idx-map[n]<=k:
+                    return True
+            map[n]=idx
+        return False
+给定一个未排序的整数数组 nums ，找出数字连续的最长序列（不要求序列元素在原数组中连续）的长度。
+
+请你设计并实现时间复杂度为 O(n) 的算法解决此问题。
+
+ class Solution:
+    def longestConsecutive(self, nums: list[int]) -> int:
+        map=set(nums)
+        max_len=0
+        for x in map:
+            if x-1 not in map:
+                current=x
+                cur_len=1
+                while current+1 in map:
+                    current+=1
+                    cur_len+=1
+                if cur_len>max_len:
+                    max_len=cur_len
+        return max_len
