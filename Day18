@@ -1,0 +1,15 @@
+给定一个按 非递减顺序 排列的整数数组 nums，请你 原地 删除部分重复元素，使得每个不同的元素 最多出现两次。元素的 相对顺序 应保持 不变。
+
+由于在某些语言中无法改变数组的长度，因此必须将结果放在数组 nums 的前半部分。更准确地说，如果删除重复元素后有 k 个元素，那么 nums 的前 k 个元素应该保存最终结果。前 k 个元素之后的内容无关紧要。
+
+将最终结果放入 nums 的前 k 个位置后，返回 k。
+class Solution:
+    def removeDuplicates(self, nums: list[int]) -> int:
+        slow=0
+        for num in nums:
+            if slow<2 or num!=nums[slow-2]:
+                nums[slow]=num
+                slow+=1
+        return slow
+
+  
