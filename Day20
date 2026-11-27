@@ -1,0 +1,19 @@
+给你一个整数数组 prices ，其中 prices[i] 表示某支股票第 i 天的价格。
+
+在每一天，你可以决定是否购买和/或出售股票。你在任何时候 最多 只能持有 一股 股票。然而，你可以在 同一天 多次买卖该股票，但要确保你持有的股票不超过一股。
+
+返回 你能获得的 最大 利润 。
+
+ 
+class Solution:
+    def maxProfit(self, prices: list[int]) -> int:
+        slow=0
+        max=0
+        n=len(prices)
+        while slow<n-1:
+            fast=slow+1
+            while fast<n and prices[fast]>prices[fast-1]:
+                fast+=1
+            max+=prices[fast-1]-prices[slow]
+            slow=fast
+        return max
